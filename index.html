@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flower Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <!-- Header Section with Video Background-->
+    <header>
+         <!-- Profile icon on the left -->
+         <a href="Profile.html">
+            <img src="https://img.icons8.com/ios-filled/50/000000/user-male-circle.png" class="profile-icon" alt="Profile">
+        </a>
+        <video autoplay muted loop id="background-video">
+            <source src="flowers.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="overlay">
+            <h1>Flowers By Grant Donson</h1>
+            <nav>
+                <a href="Hampus.html">Hampus</a>
+                <a href="Quiz.html">Quiz</a>
+                <a href="Flowers.html">Flowers</a>
+                <a href="Virtual.html">Virtual Flowers</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Content Section-->
+    <section class="content">
+        <h2>Discover Our Collection</h2>
+        <p>Explore our wide range of flower arrangements and hampers designed for every occasion.</p>
+    </section>
+
+    <br></br>
+
+<!-- Flower Categories Section-->
+<section class="flower-categories">
+    <h2>Shop by Occasion</h2>
+    <div class="categories-scroll">
+        <button onclick="filterCategory('Birthday')">🎉 Birthday</button>
+        <button onclick="filterCategory('Anniversary')">💍 Anniversary</button>
+        <button onclick="filterCategory('Valentine')">❤️ Valentine's Day</button>
+        <button onclick="filterCategory('Sympathy')">💐 Sympathy</button>
+        <button onclick="filterCategory('Congratulations')">🎊 Congratulations</button>
+        <button onclick="filterCategory('GetWell')">🌻 Get Well Soon</button>
+        <button onclick="filterCategory('NewBaby')">👶 New Baby</button>
+        <button onclick="filterCategory('ThankYou')">🙏 Thank You</button>
+    </div>
+</section>
+
+<!- Best-Selling Flowers Section >
+<section class="best-sellers">
+    <h2>Best Selling Flowers</h2>
+    <div class="flower-cards">
+        <div class="flower-card">
+            <img src="b1.jpg" alt="Orange Bunch Roses">
+            <h3>Orange Bunch Roses</h3>
+            <p>Orange Bunch Roses.</p>
+            <button class="order-btn">Order Now</button>
+        </div>
+        <div class="flower-card">
+            <img src="b2.jpg" alt="Red Rose Vase">
+            <h3>Red Rose Vase</h3>
+            <p>50 red roses in a vase.</p>
+            <button class="order-btn">Order Now</button>
+        </div>
+        <div class="flower-card">
+            <img src="b3.jpg" alt="Gift Box With Pink Roses">
+            <h3>Gift Box With Pink Roses</h3>
+            <p>Pinky white roses in a hat box.</p>
+            <button class="order-btn">Order Now</button>
+        </div>
+        <div class="flower-card">
+            <img src="b4.jpg" alt="Cerise Pink Rose Bunch">
+            <h3>Cerise Pink Rose Bunch</h3>
+            <p>This red rose bunch consists of eucalyptus, white lilies and red roses.</p>
+            <button class="order-btn">Order Now</button>
+        </div>
+    </div>
+</section>
+
+<br></br>
+
+    <footer>
+        <div class="footer-icon">
+            <a href="Tracking.html" title="Track Order">
+                <img src="track.png" alt="Tracking">
+                <span>Track</span>
+            </a>
+        </div>
+        <div class="footer-icon">
+            <a href="Tips.html" title="Delivery Tips">
+                <img src="tips.png" alt="Tips">
+                <span>Tips</span>
+            </a>
+        </div>
+        <div class="footer-icon">
+            <a href="Contact.html" title="Contact Us">
+                <img src="contact.png" alt="Contact Us">
+                <span>Contact</span>
+            </a>
+        </div>
+        <div class="footer-icon">
+            <a href="qr.html" title="Scan QR Code">
+                <img src="qr.png" alt="QR Code">
+                <span>QR Code</span>
+            </a>
+        </div>
+        <div class="footer-icon">
+            <a href="Order.html" title="Place an Order">
+                <img src="order.png" alt="Order">
+                <span>Order</span>
+            </a>
+        </div>
+    </footer>
+    
+<!-- Link Manifest -->
+<link rel="manifest" href="manifest.json">
+
+<!-- Register Service Worker -->
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js')
+            .then((registration) => {
+                console.log('Service Worker registered:', registration);
+            })
+            .catch((error) => {
+                console.log('Service Worker registration failed:', error);
+            });
+    }
+</script>
+</body>
+</html>

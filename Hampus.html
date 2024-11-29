@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hampus Flower Store</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: serif;
+        }
+
+        body {
+            background-color: #f1f1f1; /* Linen */
+            color: #3f4022; /* Dark olive green */
+            overflow-x: hidden;
+        }
+
+        /* Header with Title and Icons */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #887b56; /* Olive green */
+        }
+
+        .profile-icon,
+        .home-link {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-icon:hover,
+        .home-link:hover {
+            transform: scale(1.1);
+        }
+
+        .title {
+            font-size: 2rem;
+            color: #f1f1f1;
+            text-align: center;
+            flex: 1;
+        }
+
+        /* Welcome Note Styling */
+        .welcome-note {
+            text-align: center;
+            background-color: #f8e7d1; /* Soft peach background */
+            padding: 20px;
+            margin: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .welcome-note h2 {
+            font-size: 2rem;
+            color: #3f4022;
+            margin-bottom: 10px;
+        }
+
+        .welcome-note p {
+            font-size: 1rem;
+            color: #887b56;
+            line-height: 1.6;
+        }
+
+        /* Flower Cards Section */
+        .flower-cards {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 20px;
+            scroll-behavior: smooth;
+        }
+
+        .flower-card {
+            background-color: #dac4b3; /* Tan */
+            border-radius: 15px;
+            padding: 20px;
+            min-width: 240px;
+            flex: 0 0 auto;
+            text-align: center;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .flower-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 18px rgba(0, 0, 0, 0.15);
+        }
+
+        .flower-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 12px;
+        }
+
+        .flower-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+            color: #3f4022;
+        }
+
+        .flower-card p {
+            font-size: 1rem;
+            color: #887b56;
+            margin-bottom: 12px;
+        }
+
+        .order-btn {
+            background-color: #887b56;
+            color: #f1f1f1;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .order-btn:hover {
+            background-color: #3f4022;
+        }
+
+        /* Floating Contact Us Button */
+        .contact-us {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #d8a788;
+            color: #3f4022;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, background-color 0.3s;
+        }
+
+        .contact-us:hover {
+            transform: scale(1.1);
+            background-color: #887b56;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+         <!-- Profile icon on the left -->
+         <a href="Profile.html">
+            <img src="https://img.icons8.com/ios-filled/50/000000/user-male-circle.png" class="profile-icon" alt="Profile">
+        </a>
+             
+        <h1 class="title">Hampus</h1>
+        <a href="index.html">
+        <img src="https://img.icons8.com/ios-glyphs/30/000000/home.png" class="header-icon" alt="Home" onclick="navigateTo('index.html')">
+        </a>
+        </header>
+    
+    <!-- Welcome Note Section -->
+    <section class="welcome-note">
+        <h2>Welcome to Hampus!</h2>
+        <p>We're thrilled to have you here. Discover our beautiful flower collections, thoughtfully arranged to brighten your day. Every bouquet is crafted with care to bring joy to you and your loved ones.</p>
+    </section>
+
+    <!-- Flower Cards Section -->
+    <section class="flower-cards">
+        <div class="flower-card">
+            <img src="b2.jpg" alt="Hot Box: Lina Rose & champagne">
+            <h3>Hot Box: Lina Rose & champagne</h3>
+            <p>Roses, champers and Ferrero Rocher all in one.</p>
+            <button class="order-btn" onclick="orderFlower('Rose Bouquet')">Order Now</button>
+        </div>
+        <div class="flower-card">
+            <img src="b2.jpg" alt="Hot Box: Champagne & Chocolate">
+            <h3>Hot Box: Champagne & Chocolate</h3>
+            <p>White roses, sparking wine and Ferrero Rocher all in one.</p>
+            <button class="order-btn" onclick="orderFlower('Sunflower Joy')">Order Now</button>
+        </div>
+        <div class="flower-card">
+            <img src="b2.jpg" alt="Coffee Gift Hamper">
+            <h3>Coffee Gift Hamper</h3>
+            <p>The superb gift hamper for the coffee lover.</p>
+            <button class="order-btn" onclick="orderFlower('Orchid Elegance')">Order Now</button>
+        </div>
+        <div class="flower-card">
+            <img src="b2.jpg" alt="Hamper with wine">
+            <h3>Hamper with wine</h3>
+            <p>A little bit of everything.</p>
+            <button class="order-btn" onclick="orderFlower('Tulip Delight')">Order Now</button>
+        </div>
+    </section>
+
+    <!-- Floating Contact Us Button -->
+    <button class="contact-us" onclick="navigateTo('Contact.html')">
+        <img src="https://img.icons8.com/ios-filled/30/000000/phone.png" alt="Contact.html">
+    </button>
+
+    <!-- JavaScript for Navigation and Actions -->
+    <script>
+        function navigateTo(page) {
+            window.location.href = page + '.html';
+        }
+
+        function orderFlower(flower) {
+            alert(`You have selected: ${flower}`);
+            window.location.href = 'Order.html';
+        }
+    </script>
+</body>
+
+</html>

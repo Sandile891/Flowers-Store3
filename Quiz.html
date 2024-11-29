@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flower Quiz - Hampus</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: serif;
+        }
+
+        body {
+            background-color: #faf9f7;
+            color: #3f4022;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding-top: 60px; /* Space for the fixed header */
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #887b56;
+            padding: 15px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+        }
+
+        .header-left,
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-left a,
+        .header-right a {
+            color: #f1f1f1;
+            text-decoration: none;
+            padding: 10px;
+        }
+
+        .header-left a:hover,
+        .header-right a:hover {
+            color: #3f4022;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            color: #f1f1f1;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .quiz-container {
+            background-color: #dac4b3;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 80px; /* Added margin to push the quiz box below the header */
+            margin-bottom: 40px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .question {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .option-btn {
+            background-color: #887b56;
+            color: #f1f1f1;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .option-btn:hover {
+            background-color: #3f4022;
+        }
+
+        .progress-bar {
+            background-color: #ddd;
+            border-radius: 20px;
+            margin: 20px 0;
+            height: 20px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: #887b56;
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+
+        .result-card {
+            display: none;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .result-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .result-title {
+            font-size: 1.8rem;
+            margin-top: 20px;
+        }
+
+        .result-description {
+            margin-top: 10px;
+            color: #3f4022;
+        }
+
+        .order-btn {
+            background-color: #887b56;
+            color: #f1f1f1;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .order-btn:hover {
+            background-color: #3f4022;
+        }
+
+        .contact-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #887b56;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .contact-icon:hover {
+            background-color: #3f4022;
+        }
+
+        .icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .icon {
+            margin-left: 15px;
+            color: #f1f1f1;
+            text-decoration: none;
+        }
+
+        .icon img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .icon:hover {
+            color: #3f4022;
+        }
+            /* Floating Contact Us Button */
+            .contact-us {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #d8a788;
+            color: #3f4022;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, background-color 0.3s;
+        }
+
+        .contact-us:hover {
+            transform: scale(1.1);
+            background-color: #887b56;
+        }
+         /* Welcome Message */
+         .welcome-message {
+            margin: 20px 0;
+            font-size: 20px;
+            text-align: center;
+            color: #4b5320;
+        }
+        /* Welcome Section */
+        .welcome-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-top: 50px;
+            padding: 15px;
+            background-color: #ffe4c4;
+            border-radius: 15px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+        }
+
+        .welcome-section img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .welcome-text {
+            font-size: 1.2rem;
+            color: #3f4022;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+        <header>
+                <!-- Profile icon on the left -->
+                <a href="Profile.html">
+                   <img src="https://img.icons8.com/ios-filled/50/000000/user-male-circle.png" class="profile-icon" alt="Profile">
+               </a>
+                    
+               <h1 class="title">Flower & Hampus Quiz</h1>
+               <a href="index.html">
+               <img src="https://img.icons8.com/ios-glyphs/30/000000/home.png" class="header-icon" alt="Home" onclick="navigateTo('index.html')">
+               </a>
+               </header>
+        </header>
+
+    <br></br>
+
+<!-- Welcome Message -->
+<div class="welcome-message">
+     Feeling adventurous? Take the Hampus Quiz to discover the flower that best matches your personality – it's fun, quick, and full of surprises!
+</div>
+
+    <div class="quiz-container" id="quiz-container">
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+
+        <div class="question" id="question"></div>
+        <div class="options" id="options"></div>
+    </div>
+
+    <div class="result-card" id="result-card">
+        <img id="result-image" src="" alt="Flower Image">
+        <h2 class="result-title" id="result-title"></h2>
+        <p class="result-description" id="result-description"></p>
+        <button class="order-btn" onclick="orderNow()">Order Now</button>
+    </div>
+
+    <a href="Contact.html" class="contact-icon" id="contact-link">
+        <!-- Ensure correct file path for icon -->
+        <img src="contact.png" alt="Contact" width="60" height="60">
+    </a>
+
+    <script>
+        const quizData = [
+            {
+                question: "What emotion do you want to convey?",
+                options: ["Love & Romance", "Happiness & Cheer", "Elegance & Grace", "Comfort & Sympathy"]
+            },
+            {
+                question: "Which color palette appeals most to you?",
+                options: ["Red & Pink", "Yellow & Orange", "White & Green", "Purple & Blue"]
+            },
+            {
+                question: "Do you prefer a scent that is...",
+                options: ["Sweet & Floral", "Fresh & Clean", "Subtle & Light", "Strong & Earthy"]
+            },
+            {
+                question: "Is this gift for a special occasion?",
+                options: ["Birthday", "Anniversary", "Sympathy", "Just Because"]
+            }
+        ];
+
+        const recommendations = {
+            "Love & Romance": { title: "Red Rose Bouquet", description: "Express deep love.", image: "rose.jpg" },
+            "Happiness & Cheer": { title: "Sunflower Basket", description: "Brighten someone's day.", image: "sunflower.jpg" },
+            "Elegance & Grace": { title: "Orchid Arrangement", description: "Sophisticated beauty.", image: "orchid.jpg" },
+            "Comfort & Sympathy": { title: "Lily Bouquet", description: "Offer comfort.", image: "lily.jpg" }
+        };
+
+        let currentStep = 0;
+        let userAnswers = [];
+
+        function showQuestion() {
+            const progressEl = document.getElementById('progress');
+            const questionEl = document.getElementById('question');
+            const optionsEl = document.getElementById('options');
+
+            progressEl.style.width = `${(currentStep / quizData.length) * 100}%`;
+
+            if (currentStep < quizData.length) {
+                questionEl.innerText = quizData[currentStep].question;
+                optionsEl.innerHTML = '';
+                quizData[currentStep].options.forEach(option => {
+                    const btn = document.createElement('button');
+                    btn.className = 'option-btn';
+                    btn.innerText = option;
+                    btn.onclick = () => handleAnswer(option);
+                    optionsEl.appendChild(btn);
+                });
+            } else {
+                showResult();
+            }
+        }
+
+        function handleAnswer(option) {
+            userAnswers.push(option);
+            currentStep++;
+            showQuestion();
+        }
+
+        function showResult() {
+            const result = recommendations[userAnswers[0]];
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('result-card').style.display = 'block';
+
+            document.getElementById('result-image').src = result.image;
+            document.getElementById('result-title').innerText = result.title;
+            document.getElementById('result-description').innerText = result.description;
+        }
+
+        function orderNow() {
+            window.location.href = "order.html";
+        }
+
+        // Initialize quiz
+        showQuestion();
+    </script>
+</body>
+
+</html>
+
+

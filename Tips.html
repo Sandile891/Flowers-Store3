@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flower Care Tips 🌸</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: serif;
+        }
+
+        body {
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #3f4022;
+            color: white;
+            width: 100%;
+            text-align: center;
+            padding: 15px;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        /* Header icons */
+        .header-icons {
+            position: absolute;
+            top: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 15px;
+        }
+
+        /* Profile icon - adjusted to move left */
+        .profile-icon {
+            position: absolute;
+            left: 15px; /* Move more left */
+            top: 10px;
+        }
+
+        .header-icons a {
+            color: white;
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        /* Home icon on the right */
+        .home-link {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+        }
+
+        /* Floating Contact Us icon */
+        .contact-icon {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #3f4022;
+            color: white;
+            padding: 8px;
+            border-radius: 50%;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        .contact-icon:hover {
+            background-color: #887b56;
+        }
+
+        /* Welcome message */
+        .welcome-message {
+            text-align: center;
+            font-size: 20px;
+            color: #333;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .welcome-message span {
+            color: #3f4022;
+        }
+
+        /* Scrollable Tips Container */
+        .tips-container {
+            display: flex;
+            overflow-x: scroll;
+            padding-top: 20px;
+            width: 100%;
+            justify-content: start;
+            gap: 20px;
+        }
+
+        .tip-card {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            padding: 15px;
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .tip-card:hover {
+            transform: scale(1.05);
+        }
+
+        .tip-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .tip-card h3 {
+            font-size: 18px;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        .tip-card p {
+            font-size: 14px;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        /* Scrollbar customization */
+        .tips-container::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .tips-container::-webkit-scrollbar-thumb {
+            background-color: #3f4022;
+            border-radius: 10px;
+        }
+
+        .tips-container::-webkit-scrollbar-track {
+            background-color: #f5f5f5;
+        }
+        .profile-icon {
+        position: absolute; /* Allows precise positioning */
+        left: 3px; /* Adjust this value to control how far left the icon moves */
+        top: 10px; /* Ensures the icon stays aligned vertically */
+        width: 35px; /* Set the width of the icon */
+        height: 35px; /* Set the height of the icon */
+        cursor: pointer; /* Makes it clear that the icon is clickable */
+        margin-top: -10px;  /*Adjust the value to move it up */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Flower Care Tips </h1>
+        <div class="header-icons">
+            <!-- Profile icon on the left -->
+            <a href="Profile.html">
+                <img src="https://img.icons8.com/ios-filled/50/000000/user-male-circle.png" class="profile-icon" alt="Profile">
+            </a>
+            <!-- Home icon on the right -->
+            <a href="index.html">
+                <img src="https://img.icons8.com/ios-glyphs/30/000000/home.png" class="home-link" alt="Home">
+            </a>
+        </div>
+    </header>
+
+    <!-- Welcome message -->
+    <div class="welcome-message">
+        Welcome to your flower care guide! <br> Here are some tips to help your plants thrive! 
+    </div>
+
+    <!-- Tips Container -->
+    <div class="tips-container">
+        <!-- Tip Card 1 -->
+        <div class="tip-card">
+            <img src="https://img.icons8.com/ios/100/000000/rose.png" alt="Rose Care">
+            <h3>Rose Care</h3>
+            <p>Roses love sunlight! Make sure they get 6 hours of direct sunlight daily. Water them deeply to keep them hydrated.</p>
+        </div>
+        <!-- Tip Card 2 -->
+        <div class="tip-card">
+            <img src="https://img.icons8.com/ios/100/000000/sunflower.png" alt="Sunflower Care">
+            <h3>Pink Roses Care</h3>
+            <p> Ensure they are in a well-draining soil, and water them regularly, but not excessively.</p>
+        </div>
+        <!-- Tip Card 3 -->
+        <div class="tip-card">
+            <img src="https://img.icons8.com/ios/100/000000/orchid.png" alt="Orchid Care">
+            <h3>Orchid Care</h3>
+            <p>Orchids need indirect light and high humidity. Keep the soil moist and feed them with orchid fertilizer monthly.</p>
+        </div>
+        <!-- Tip Card 4 -->
+        <div class="tip-card">
+            <img src="https://img.icons8.com/ios/100/000000/tulip.png" alt="Tulip Care">
+            <h3>Cerise Pink Roses Care</h3>
+            <p> They need well-drained soil and kept in room tempurature. Water them gently to avoid overwatering.</p>
+        </div>
+        <!-- Tip Card 5 -->
+        <div class="tip-card">
+            <img src="https://img.icons8.com/ios/100/000000/daisy.png" alt="Daisy Care">
+            <h3>Orange Care</h3>
+            <p> Plant them in well-draining soil and water them to keep them flourishing.</p>
+        </div>
+    </div>
+
+    <!-- Contact Link -->
+    <a href="contact.html" class="contact-icon" id="contact-link">
+        <img src="https://img.icons8.com/ios-filled/50/000000/contact-card.png" alt="Contact">
+    </a>
+
+</body>
+
+</html>
+

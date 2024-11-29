@@ -1,0 +1,261 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: serif;
+}
+
+body {
+    background-color: #f1f1f1; /* Linen */
+    color: #3f4022; /* Dark olive green */
+    overflow-x: hidden;
+    padding: 15px;
+}
+
+/* Header icons */
+.profile-icon {
+    position: relative; /* Ensure the 'top' property works */
+    top: -20px;  /* Moves the icon upwards */
+    display: flex;
+}
+
+header {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.overlay {
+    text-align: center;
+    color: #f1f1f1;
+    padding: 0 15px;
+}
+
+.overlay h1 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+nav a {
+    color: #ffffff; /* Olive green */
+    text-decoration: none;
+    font-size: 5rem;
+    padding: 5px 10px;
+    border-radius: 15px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+nav a:hover {
+    background-color: #dac4b3; /* Tan */
+}
+
+.content {
+    padding: 20px;
+    text-align: center;
+}
+
+.content h2 {
+    font-size: 1.5rem;
+    color: #3f4022; /* Dark olive green */
+    margin-bottom: 10px;
+}
+
+footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #3f4022; /* Dark olive green */
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size-adjust: initial;
+}
+
+.footer-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    flex: 1;
+}
+
+.footer-icon img {
+    width: 25px;
+    height: 25px;
+    margin-bottom: 5px;
+    filter: brightness(0) invert(1);
+    font-size: x-small;
+}
+
+.footer-icon span {
+    font-size: 0.8rem;
+    color: #d8a788; /* Warm beige */
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 480px) {
+
+    /* Header icons */
+    .profile-icon {
+        top: -20px;  /* Moves the icon upwards */
+        display: flex;
+    }
+
+    header {
+        height: 40vh;
+    }
+
+    .overlay h1 {
+        font-size: 1.4rem;
+    }
+
+    nav a {
+        font-size: 0.9rem;
+        padding: 5px 8px;
+    }
+
+    .content h2 {
+        font-size: 1.3rem;
+    }
+
+    footer {
+        flex-wrap: wrap;
+        gap: 1px;
+        padding: 1px;
+    }
+
+    .footer-icon {
+        flex: 1 1 15%;
+        margin-bottom: 1px;
+    }
+}
+
+/* Flower Categories Section */
+.flower-categories {
+    margin-bottom: 20px;
+}
+
+.categories-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    padding: 8px 0;
+}
+
+.categories-scroll button {
+    background-color: #887b56; /* Olive green */
+    color: #f1f1f1;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    white-space: nowrap;
+    font-size: 12px;
+    transition: background-color 0.3s;
+}
+
+.categories-scroll button:hover {
+    background-color: #3f4022; /* Dark olive green */
+}
+
+/* Best-Selling Flowers Section */
+.best-sellers {
+    margin-top: 20px;
+}
+
+.flower-cards {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 12px;
+    padding-bottom: 10px;
+}
+
+.flower-card {
+    background-color: #dac4b3; /* Tan */
+    border-radius: 8px;
+    padding: 10px;
+    min-width: 160px;
+    flex: 0 0 auto;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.flower-card img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+.flower-card h3 {
+    color: #3f4022; /* Dark olive green */
+    margin: 8px 0;
+    font-size: 14px;
+}
+
+.flower-card p {
+    font-size: 12px;
+    color: #3f4022; /* Dark olive green */
+    margin-bottom: 10px;
+}
+
+.order-btn {
+    background-color: #887b56; /* Olive green */
+    color: #f1f1f1;
+    padding: 6px 10px;
+    font-size: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.order-btn:hover {
+    background-color: #3f4022; /* Dark olive green */
+}
+
+/**/
+
+
+.footer-icon {
+    text-align: center;
+    flex: 1;
+}
+
+.footer-icon img {
+    display: block;
+    margin: 0 auto;
+    width: 30px; /* Adjust icon size as needed */
+    height: 30px;
+}
+
+.footer-icon span {
+    display: block;
+    margin-top: 5px; /* Add some spacing between icon and text */
+    font-size: 14px; /* Adjust font size as needed */
+    color: #eee8e8; /* Optional: Text color */
+}

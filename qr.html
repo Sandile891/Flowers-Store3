@@ -1,0 +1,254 @@
+<DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan Your Package 📦</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: serif;
+        }
+
+        body {
+            background-color: #f2f2f2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        header {
+            background-color: #3f4022;
+            color: white;
+            width: 100%;
+            text-align: center;
+            padding: 15px;
+            position: relative;
+            font-size: 18px;
+        }
+
+        /* Header icons container */
+        .header-icons {
+            position: absolute;
+            top: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 15px;
+        }
+
+        /* Profile icon */
+        .profile-icon {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+
+        /* Home icon */
+        .home-link {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            margin-top: -13px;
+            margin-left: auto;
+        }
+        .home-link {
+        position: absolute; /* Allows precise positioning */
+        right: 8px; /* Adjust this value to control how far right the icon moves */
+        top: 20px; /* Ensures the icon stays aligned vertically */
+        cursor: pointer; /* Makes it clear that the icon is clickable */
+        }
+    
+        /* Floating contact link */
+        .floating-contact {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #3f4022;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .welcome-note {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #3f4022;
+            font-weight: bold;
+        }
+        .profile-icon {
+        position: absolute; /* Allows precise positioning */
+        left: 3px; /* Adjust this value to control how far left the icon moves */
+        top: 10px; /*Ensures the icon stays aligned vertically */
+        width: 40px; /* Set the width of the icon */
+        height: 40px; /* Set the height of the icon */
+        cursor: pointer; /* Makes it clear that the icon is clickable */
+        margin-top: -10px;  /*Adjust the value to move it up */
+        }
+        .home-link {
+    margin-left: auto; /* Pushes the home icon to the far right */
+}
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Scan Your Package </h1>
+        <!--div class="header-icons">
+            <img src="https://img.icons8.com/ios-filled/50/000000/user-male-circle.png" class="profile-icon" alt="Profile" onclick="navigateTo('Profile.html')">
+            <img src="https://img.icons8.com/ios-glyphs/30/000000/home.png" class="home-link" alt="Home" onclick="navigateTo('index.html')">
+        </div-->
+          <!-- Profile icon on the left -->
+          <a href="Profile.html">
+            <img src="https://img.icons8.com/ios-filled/50/000000/user-male-circle.png" class="profile-icon" alt="Profile">
+        </a>
+             
+        <a href="index.html">
+        <img src="https://img.icons8.com/ios-glyphs/30/000000/home.png" class="header-icon" alt="Home" onclick="navigateTo('index.html')">
+        </a>
+    </header>
+
+    <div class="scanner-container">
+        <h2>Welcome! </h2>
+        <p class="welcome-note">Engage with us by scanning a QR code or barcode to see something special! </p>
+
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', serif;
+        }
+
+        /* QR Code Scanner */
+        #qr-reader {
+            width: 100%;
+            max-width: 400px;
+            margin-top: 20px;
+        }
+
+        /* Video Player */
+        .video-container {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .video-container video {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .action-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.action-btn:hover {
+    background-color: #0056b3;
+}
+
+#camera-view {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 500px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+
+    </style>
+</head>
+<body>
+
+    <!-- QR Code Scanner -->
+    <div id="qr-reader"></div>
+
+    <!-- Video Player -->
+    <div class="video-container" id="video-container">
+        <h3>Your Special Message </h3>
+        <video id="message-video" controls></video>
+        <button class="home-button" onclick="goHome()">Go Home</button>
+    </div>
+
+    <!-- Include the HTML5 QR Code Scanner Library -->
+    <script src="html5-qrcode.min.js.js"></script>
+
+    <script>
+        // Initialize the QR Code Scanner
+        const qrCodeScanner = new Html5Qrcode("qr-reader");
+
+        function onScanSuccess(decodedText) {
+            // Hide the QR code scanner
+            document.getElementById('qr-reader').style.display = 'none';
+
+            // Show the video player container
+            const videoContainer = document.getElementById('video-container');
+            videoContainer.style.display = 'flex';
+
+            // Set the video source to the decoded URL (assuming it's a video link)
+            const videoElement = document.getElementById('message-video');
+            videoElement.src = decodedText;
+            videoElement.load();
+            videoElement.play();
+        }
+
+        function onScanError(errorMessage) {
+            console.error('QR Code scan error:', errorMessage);
+        }
+
+        // Start the scanner
+        qrCodeScanner.start(
+            { facingMode: "environment" },
+            {
+                fps: 10,
+                qrbox: 250
+            },
+            onScanSuccess,
+            onScanError
+        );
+
+        // Function to redirect to home
+        function goHome() {
+            window.location.href = "index.html";
+        }
+    </script>
+
+<script src="script.js"></script>
+
+</body>
+
+<body>
+    <!-- Buttons ->
+    <button id="stop-ar-btn" class="action-btn">✖️</button>
+        <a-camera gps-camera rotation-reader></a-camera>
+    </a-scene-->
+    <!-- Buttons -->
+    
+<!-- Camera View -->
+<div id="camera-view" style="display: none;">
+    <video id="qr-video" autoplay></video>
+</div>
+
+</body>
+
+

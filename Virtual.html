@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Flower Experience 🌺</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: serif;
+        }
+
+        body {
+            background-color: #f5f3f0;
+            color: #3f4022;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: #3f4022;
+            padding: 5px 15px;  /* Reduced padding */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #fff;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;  /* Reduced gap between nav items */
+            align-items: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;  /* Reduced font size */
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 10px 0;  /* Reduced margin */
+            font-size: 2rem;  /* Reduced font size */
+            color: #ffffff;
+        }
+
+        /* Make the profile and home icons smaller */
+        .profile-icon, .home-link {
+            width: 30px;  /* Make icons smaller */
+            height: 30px; /* Ensure height matches width for consistent sizing */
+            cursor: pointer;
+        }
+
+        /* Container for Virtual Flower and Camera */
+        #camera-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        video {
+            width: 80%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .button {
+            background-color: #3f4022;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .button:hover {
+            background-color: #887b56;
+        }
+
+        #flower-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            display: none;
+        }
+
+        /* Contact Icon */
+        .contact-icon img {
+            width: 30px;  /* Reduced size */
+            height: 30px; /* Ensure height matches width */
+        }
+        
+
+        /* Welcome Section */
+        .welcome-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-top: 50px;
+            padding: 15px;
+            background-color: #ffe4c4;
+            border-radius: 15px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+        }
+
+        .welcome-section img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .welcome-text {
+            font-size: 1.2rem;
+            color: #3f4022;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <nav>
+            <!-- Wrapping profile icon in an anchor tag -->
+            <a href="profile.html">
+                <img src="https://img.icons8.com/ios-filled/50/000000/user-male-circle.png" class="profile-icon" alt="Profile">
+            </a>
+            <h1>Explore the Virtual Flower Experience </h1>
+            <!-- Wrapping home icon in an anchor tag -->
+            <a href="index.html">
+                <img src="https://img.icons8.com/ios-glyphs/30/000000/home.png" class="home-link" alt="Home">
+            </a>
+        </nav>
+    </header>
+
+        <section class="welcome-section">
+            <p class="welcome-text">Step into a world of beauty!  <span class="highlight">With our AR experience </span></p>
+            <p class="welcome-text"> you can explore every petal and detail of your favorite flowers before you buy. See how they bloom in vibrant 3D and imagine them bringing joy to your space or a loved one’s heart. </p>
+        </section>
+
+    <!-- AR.js Camera and Virtual Flower Section -->
+    <div id="camera-container">
+        <a-scene embedded arjs>
+            <!-- Define the Marker for AR.js to track -->
+            <a-marker preset="hiro">
+                <!-- Load the 3D flower model -->
+                <a-entity gltf-model="url(ar.glb)" scale="0.1 0.1 0.1" position="0 0 0"></a-entity>
+            </a-marker>
+
+            <!-- Camera -->
+            <a-entity camera></a-entity>
+        </a-scene>
+        
+        <video id="camera" autoplay playsinline></video>
+        <!--img id="flower-overlay" src="ar.glb" alt="3D Virtual Flower"-->
+
+        <button class="button" onclick="startCamera()">Start Camera & Show Flower</button>
+        <button class="button" onclick="stopCamera()">Stop Camera & Hide Flower</button>
+    </div>
+
+    <!-- JavaScript to Control Camera and 3D Flower -->
+    <script>
+        const videoElement = document.getElementById('camera');
+        const flowerOverlay = document.getElementById('flower-overlay');
+        let stream;
+
+        // Function to start the camera and show the 3D flower
+        async function startCamera() {
+            try {
+                // Request access to the user's camera
+                stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                videoElement.srcObject = stream;
+                flowerOverlay.style.display = 'block';
+            } catch (err) {
+                alert('Error accessing camera: ' + err.message);
+            }
+        }
+
+        // Function to stop the camera and hide the 3D flower
+        function stopCamera() {
+            if (stream) {
+                const tracks = stream.getTracks();
+                tracks.forEach(track => track.stop());
+                videoElement.srcObject = null;
+                flowerOverlay.style.display = 'none';
+            }
+        }
+    </script>
+
+    <!-- Contact Link -->
+    <a href="contact.html" class="contact-icon" id="contact-link">
+        <!-- Ensure correct file path for icon -->
+        <img src="contact.png" alt="Contact">
+    </a>
+
+</body>
+
+</html>

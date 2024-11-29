@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Delivery Tracking 🚚</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            background-color: #3f4022;
+            color: white;
+            width: 100%;
+            text-align: center;
+            padding: 15px;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 20px;
+        }
+
+        /* Header icons */
+        .header-icons {
+            position: absolute;
+            top: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 15px;
+        }
+
+        .header-icons a {
+            color: white;
+            font-size: 18px; /* Smaller icons */
+            text-decoration: none;
+        }
+
+        /* Welcoming Text */
+        .welcome-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 20px;
+            color: #555;
+        }
+
+        /* Floating Contact Us icon */
+        .contact-icon {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #3f4022;
+            color: white;
+            padding: 6px;
+            border-radius: 50%;
+            font-size: 16px; /* Smaller icon */
+            text-decoration: none;
+        }
+
+        .contact-icon:hover {
+            background-color: #887b56;
+        }
+
+        /* Map Container for Tracking */
+        .map-container {
+            width: 100%;
+            height: 500px;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+            border: 2px solid #ccc;
+        }
+
+        .info {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .info p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        .notification-btn {
+            background-color: #3f4022;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .notification-btn:hover {
+            background-color: #887b56;
+        }
+
+        .arrival-alert {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #4caf50;
+            color: white;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+        .profile-icon {
+        position: absolute; /* Allows precise positioning */
+        left: 4px; /* Adjust this value to control how far left the icon moves */
+        top: 10px; /* Ensures the icon stays aligned vertically */
+        width: 40px; /* Set the width of the icon */
+        height: 40px; /* Set the height of the icon */
+        cursor: pointer; /* Makes it clear that the icon is clickable */
+        margin-top: -10px; /* Adjust the value to move it up */
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Track Your Delivery </h1>
+        <div class="header-icons">
+            <!-- Profile icon on the left -->
+            <a href="profile.html">
+                <img src="https://img.icons8.com/ios-filled/50/000000/user-male-circle.png" class="profile-icon" alt="Profile">
+            </a>
+            <!-- Home icon on the right -->
+            <a href="index.html">
+                <img src="https://img.icons8.com/ios-glyphs/30/000000/home.png" class="home-link" alt="Home">
+            </a>
+        </div>
+    </header>
+
+    <!-- Welcoming Text Above Map -->
+    <div class="welcome-text">
+        <p>Welcome to our Live Delivery Tracking! </p>
+        <p>Stay updated on the real-time location of your delivery and receive notifications when your order arrives.</p>
+    </div>
+
+    
+    <!-- Delivery Status Container -->
+<div class="delivery-container">
+    <div class="status-box">
+        <div class="icons">
+            <img src="https://img.icons8.com/ios/50/000000/car--v1.png" alt="Car Icon" class="car-icon">
+            <div class="loading-cylinder"></div>
+            <img src="https://img.icons8.com/ios/50/000000/home.png" alt="Home Icon" class="home-icon">
+        </div>
+        <p id="status">Current Status: Tracking your delivery...</p>
+    </div>
+</div>
+
+<!-- Delivery Information -->
+<div class="info">
+    <p id="location">Estimated Location: Loading...</p>
+</div>
+
+<!-- Button to Activate Notifications -->
+<button class="notification-btn" onclick="activateNotifications()">Enable Arrival Notifications</button>
+
+<!-- CSS for the simplified layout -->
+<style>
+    .delivery-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin: 20px auto;
+    }
+
+    .status-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        background-color: #f8f8f8;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        width: 300px;
+        text-align: center;
+    }
+
+    .icons {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .car-icon,
+    .home-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .loading-cylinder {
+        width: 40px;
+        height: 40px;
+        border: 4px solid #ccc;
+        border-top: 4px solid #007bff;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .arrival-alert {
+        display: none;
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+        padding: 10px;
+        border-radius: 4px;
+        margin: 10px auto;
+        width: 80%;
+        text-align: center;
+    }
+
+    .notification-btn {
+        margin: 10px auto;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .notification-btn:hover {
+        background-color: #0056b3;
+    }
+
+    .info {
+        margin-top: 10px;
+        text-align: center;
+    }
+</style>
+
+<!-- JavaScript for Notifications and Status Updates -->
+<script>
+    let deliveryArrived = false;
+
+    // Function to simulate delivery progress
+    function simulateDelivery() {
+        const locationElement = document.getElementById("location");
+        const statusElement = document.getElementById("status");
+
+        if (!deliveryArrived) {
+            statusElement.innerText = "Current Status: Delivery is on its way...";
+            locationElement.innerText = "Estimated Location: Approaching destination...";
+        }
+    }
+
+    // Function to show arrival notification
+    function notifyArrival() {
+        const arrivalAlert = document.getElementById('arrival-alert');
+        arrivalAlert.style.display = 'block';
+    }
+
+    // Function to activate browser notifications
+    function activateNotifications() {
+        if (Notification.permission === "granted") {
+            new Notification("Delivery Notification", {
+                body: "Your delivery is en route!",
+                icon: "https://img.icons8.com/ios/50/000000/delivery-truck.png",
+            });
+        } else {
+            Notification.requestPermission().then(function (result) {
+                if (result === "granted") {
+                    new Notification("Delivery Notification", {
+                        body: "Your delivery is en route!",
+                        icon: "https://img.icons8.com/ios/50/000000/delivery-truck.png",
+                    });
+                }
+            });
+        }
+    }
+
+    // Simulate delivery updates every 5 seconds
+    setInterval(simulateDelivery, 5000);
+
+    // Use RCM or admin app to notify delivery arrival
+    function notifyViaAdmin() {
+        notifyArrival();
+    }
+</script>
+
+    <!-- Contact Link -->
+    <a href="contact.html" class="contact-icon" id="contact-link">
+        <img src="contact.png" alt="Contact" width="50" height="50">
+    </a>
+
+</body>
+
+</html>
+

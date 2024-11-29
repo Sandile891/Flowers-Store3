@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Page</title>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: serif;
+      background-color: #f1f1f1;
+      color: #333;
+    }
+
+    /* Header Styles */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px;
+      background-color: #3f4022; /* Dark olive green */
+    }
+
+    .profile-icon, .home-link {
+      cursor: pointer;
+    }
+
+    .profile-icon {
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      left: 15px;
+      top: 10px;
+    }
+
+    .home-link {
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      right: 15px;
+      top: 15px;
+    }
+
+    #title {
+      text-align: center;
+      flex-grow: 1;
+      color: #fff;
+      margin: 0;
+      font-size: 1.8rem;
+    }
+
+    /* Floating Contact Icon */
+    .contact-us {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #3f4022;
+      padding: 10px;
+      border-radius: 50%;
+    }
+
+    .contact-us img {
+      width: 30px;
+      height: 30px;
+    }
+
+    /* Content Section */
+    .content {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .google-signin {
+      margin: 20px auto;
+    }
+
+    /* User Info Section */
+    #user-details {
+      display: none;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    #user-profile-pic {
+      border-radius: 50%;
+    }
+
+    .payment-info {
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    .payment-info input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .payment-info button {
+      background-color: #3f4022;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header with Profile and Home icons -->
+  <div class="header">
+    <img src="https://img.icons8.com/ios-filled/50/000000/user-male-circle.png" class="profile-icon" alt="Profile" onclick="navigateTo('Profile.html')">
+    <h1 id="title">Profile</h1>
+    <img src="https://img.icons8.com/ios-glyphs/30/000000/home.png" class="home-link" alt="Home" onclick="navigateTo('index.html')">
+  </div>
+
+  <!-- Floating Contact Button -->
+  <button class="contact-us" onclick="navigateTo('Contact.html')">
+    <img src="https://img.icons8.com/ios-filled/30/000000/phone.png" alt="Contact">
+  </button>
+
+  <!-- Content Section -->
+  <div class="content">
+    <!-- Welcome Text -->
+    <h2>Welcome to Your Profile!</h2>
+    <p>We're glad to have you here. Please sign in with your Google account to access your profile details.</p>
+
+    <!-- Google Sign-In Button -->
+    <div id="google-signin" class="google-signin"></div>
+
+    <!-- User Details Section -->
+    <div id="user-details">
+      <h3>Hello, <span id="user-name"></span></h3>
+      <img id="user-profile-pic" src="" alt="Profile Picture" width="100">
+      <p><strong>Email:</strong> <span id="user-email"></span></p>
+      
+      <!-- Payment Information -->
+      <div class="payment-info">
+        <h4>Save Payment Option</h4>
+        <input type="text" id="card-number" placeholder="Enter card number">
+        <button onclick="savePaymentOption()">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function navigateTo(page) {
+      window.location.href = page;
+    }
+
+    // Initialize Google Sign-In Button
+    function handleCredentialResponse(response) {
+      const data = JSON.parse(atob(response.credential.split('.')[1]));
+      displayUserInfo(data);
+    }
+
+    window.onload = function() {
+      google.accounts.id.initialize({
+        client_id: 'YOUR_GOOGLE_CLIENT_ID',
+        callback: handleCredentialResponse
+      });
+
+      google.accounts.id.renderButton(
+        document.getElementById('google-signin'),
+        { theme: 'outline', size: 'large' }
+      );
+      google.accounts.id.prompt();
+    };
+
+    function displayUserInfo(user) {
+      document.querySelector('.content').style.display = 'none';
+      const userDetails = document.getElementById('user-details');
+      userDetails.style.display = 'block';
+      document.getElementById('user-name').textContent = user.name;
+      document.getElementById('user-email').textContent = user.email;
+      document.getElementById('user-profile-pic').src = user.picture;
+    }
+
+    function savePaymentOption() {
+      const cardNumber = document.getElementById('card-number').value;
+      if (cardNumber) {
+        alert('Payment option saved successfully!');
+      } else {
+        alert('Please enter a valid card number.');
+      }
+    }
+  </script>
+</body>
+</html>
